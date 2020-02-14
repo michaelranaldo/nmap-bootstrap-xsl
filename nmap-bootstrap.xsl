@@ -3,11 +3,13 @@
 Nmap Bootstrap XSL
 Creative Commons BY-SA
 Andreas Hontzia (@honze_net)
+Modified for Materialize by Michael Ranaldo (@michaelranaldo)
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8" indent="yes" doctype-system="about:legacy-compat" />
     <xsl:template match="/">
         <html lang="en">
+
         <head>
             <meta name="referrer" content="no-referrer" />
             <!-- Compiled and minified CSS -->
@@ -18,6 +20,7 @@ Andreas Hontzia (@honze_net)
             <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha384-fJU6sGmyn07b+uD1nMk7/iSb4yvaowcueiQhfVgQuD98rfva8mcr1eSvjchfpMrH" crossorigin="anonymous"></script>
             <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" integrity="sha384-rgWRqC0OFPisxlUvl332tiM/qmaNxnlY46eksSZD84t+s2vZlqGeHrncwIRX7CGp" crossorigin="anonymous"></script>
             <script src="https://cdn.datatables.net/1.10.20/js/dataTables.min.js" integrity="sha384-7PXRkl4YJnEpP8uU4ev9652TTZSxrqC8uOpcV1ftVEC7LVyLZqqDUAaq+Y+lGgr9" crossorigin="anonymous"></script>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
             <style>
                 .target:before {
             content: "";
@@ -55,26 +58,25 @@ Andreas Hontzia (@honze_net)
         </head>
 
         <body>
-            <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#scannedhosts">Scanned Hosts</a></li>
-                            <li><a href="#onlinehosts">Online Hosts</a></li>
-                            <li><a href="#openservices">Open Services</a></li>
-                        </ul>
-                    </div>
+            <!-- NavBar -->
+            <nav>
+                <div class="nav-wrapper">
+                    <ul class="left hide-on-med-and-down">
+                        <li><a href="#scannedhosts">Scanned Hosts</a></li>
+                        <li><a href="#onlinehosts">Online Hosts</a></li>
+                        <li><a href="#openservices">Open Services</a></li>
+                    </ul>
+                    <a href="#" data-target="side-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul class="sidenav" id="side-navbar">
+                        <li><a href="#scannedhosts">Scanned Hosts</a></li>
+                        <li><a href="#onlinehosts">Online Hosts</a></li>
+                        <li><a href="#openservices">Open Services</a></li>
+                    </ul>
+                    <a href="#" class="brand-logo right">Nmap Scan Report
+                        <xsl:value-of select="/nmaprun/@version" /></a>
                 </div>
             </nav>
+            <!-- Main Content -->
             <div class="container">
                 <div class="card">
                     <div class="card-content">
