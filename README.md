@@ -1,6 +1,6 @@
 # nmap-bootstrap-xsl
 
-A Nmap XSL implementation with Bootstrap.
+A Nmap XSL implementation with Materialize.
 
 Forked from [honze-net](https://github.com/honze-net/nmap-bootstrap-xsl).
 
