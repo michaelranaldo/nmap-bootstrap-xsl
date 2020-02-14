@@ -118,7 +118,7 @@ Modified for Materialize by Michael Ranaldo (@michaelranaldo)
                     <div class="card blue-grey darken-1">
                         <div class="card-content white-text">
                             <div class="card-title">
-                                <h2>Host Status</h2>
+                                Active Hosts
                             </div>
                             <div class="card-content">
                                 <div class="progress">
