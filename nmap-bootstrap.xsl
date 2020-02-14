@@ -16,10 +16,9 @@ Modified for Materialize by Michael Ranaldo (@michaelranaldo)
             <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
             <!-- Compiled and minified JavaScript -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.min.css" type="text/css" integrity="sha384-VEpVDzPR2x8NbTDZ8NFW4AWbtT2g/ollEzX/daZdW/YvUBlbgVtsxMftnJ84k0Cn" crossorigin="anonymous" />
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css" />
             <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha384-fJU6sGmyn07b+uD1nMk7/iSb4yvaowcueiQhfVgQuD98rfva8mcr1eSvjchfpMrH" crossorigin="anonymous"></script>
-            <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" integrity="sha384-rgWRqC0OFPisxlUvl332tiM/qmaNxnlY46eksSZD84t+s2vZlqGeHrncwIRX7CGp" crossorigin="anonymous"></script>
-            <script src="https://cdn.datatables.net/1.10.20/js/dataTables.min.js" integrity="sha384-7PXRkl4YJnEpP8uU4ev9652TTZSxrqC8uOpcV1ftVEC7LVyLZqqDUAaq+Y+lGgr9" crossorigin="anonymous"></script>
+            <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
             <style>
             .target:before {
@@ -59,6 +58,9 @@ Modified for Materialize by Michael Ranaldo (@michaelranaldo)
                 /* glyphicon-chevron-right */
             }
             </style>
+            <script>
+            M.AutoInit();
+            </script>
             <title>Scan Report Nmap
                 <xsl:value-of select="/nmaprun/@version" />
             </title>
@@ -113,19 +115,24 @@ Modified for Materialize by Michael Ranaldo (@michaelranaldo)
                         </a>
                     </div>
                     <!-- The Progress Bar Bit -->
-                    <div class="card-panel">
-                        <h2>Host Status</h2>
-                        <div class="progress">
-                            <div class="determinate green tooltipped" data-position="top" data-tooltip="Completed Hosts" style="width: 0%">
-                                <!-- Set the width using the nmap output, overriding the default -->
-                                <xsl:attribute name="style">width:
-                                    <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />%;</xsl:attribute>
-                                <xsl:value-of select="/nmaprun/runstats/hosts/@up" />
-                                <span class="sr-only"></span>
-                                <!-- Set tool tip data -->
-                                <!--     <xsl:attribute name="data-tooltip">
-                                            <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />% of scanned hosts are up.
-                                        </xsl:attribute> -->
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <div class="card-title">
+                                <h2>Host Status</h2>
+                            </div>
+                            <div class="card-content">
+                                <div class="progress">
+                                    <div class="determinate green tooltipped" data-position="top" data-tooltip="Completed Hosts" style="width: 0%">
+                                        <!-- Set the width using the nmap output, overriding the default -->
+                                        <xsl:attribute name="style">width:
+                                            <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />%;</xsl:attribute>
+                                        <xsl:value-of select="/nmaprun/runstats/hosts/@up" />
+                                        <span class="sr-only"></span>
+                                        <!-- Set tool tip data -->
+                                        <xsl:attribute name="data-tooltip">width:
+                                            <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />%;</xsl:attribute>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
