@@ -120,15 +120,15 @@ Modified for Materialize by Michael Ranaldo (@michaelranaldo)
                                 <div class="progress">
                                     <div class="determinate green tooltipped" data-position="top" data-tooltip="Completed Hosts" style="width: 0%">
                                         <!-- Set the width using the nmap output, overriding the default -->
-                                        <xsl:attribute name="style">width:
+                                     <!--   <xsl:attribute name="style">width:
                                             <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />%;
                                         </xsl:attribute>
                                         <xsl:value-of select="/nmaprun/runstats/hosts/@up" />
-                                        <span class="sr-only"></span>
+                                        <span class="sr-only"></span> -->
                                         <!-- Set tool tip data -->
-                                        <xsl:attribute name="data-tooltip">
+                                   <!--     <xsl:attribute name="data-tooltip">
                                             <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />% of scanned hosts are up.
-                                        </xsl:attribute>
+                                        </xsl:attribute> -->
                                     </div>
                                 </div>
                             </div>
