@@ -138,78 +138,82 @@ Modified for Materialize by Michael Ranaldo (@michaelranaldo)
                     </div>
                 </div>
                 <!-- Scanned Hosts Table -->
-                <h2 id="scannedhosts" class="target">Scanned Hosts<xsl:if test="/nmaprun/runstats/hosts/@down > 1024"><small> (offline hosts are hidden)</small></xsl:if>
-                </h2>
-                <div class="table-responsive">
-                    <table id="table-overview" class="table table-striped dataTable" role="grid">
-                        <thead>
-                            <tr>
-                                <th>State</th>
-                                <th>Address</th>
-                                <th>Hostname</th>
-                                <th>TCP (open)</th>
-                                <th>UDP (open)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <xsl:choose>
-                                <xsl:when test="/nmaprun/runstats/hosts/@down > 1024">
-                                    <xsl:for-each select="/nmaprun/host[status/@state='up']">
-                                        <tr>
-                                            <td><span class="label label-danger">
-                                                    <xsl:if test="status/@state='up'">
-                                                        <xsl:attribute name="class">label label-success</xsl:attribute>
-                                                    </xsl:if>
-                                                    <xsl:value-of select="status/@state" />
-                                                </span></td>
-                                            <td>
-                                                <xsl:value-of select="address/@addr" />
-                                            </td>
-                                            <td>
-                                                <xsl:value-of select="hostnames/hostname/@name" />
-                                            </td>
-                                            <td>
-                                                <xsl:value-of select="count(ports/port[state/@state='open' and @protocol='tcp'])" />
-                                            </td>
-                                            <td>
-                                                <xsl:value-of select="count(ports/port[state/@state='open' and @protocol='udp'])" />
-                                            </td>
-                                        </tr>
-                                    </xsl:for-each>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:for-each select="/nmaprun/host">
-                                        <tr>
-                                            <td><span class="label label-danger">
-                                                    <xsl:if test="status/@state='up'">
-                                                        <xsl:attribute name="class">label label-success</xsl:attribute>
-                                                    </xsl:if>
-                                                    <xsl:value-of select="status/@state" />
-                                                </span></td>
-                                            <td>
-                                                <xsl:value-of select="address/@addr" />
-                                            </td>
-                                            <td>
-                                                <xsl:value-of select="hostnames/hostname/@name" />
-                                            </td>
-                                            <td>
-                                                <xsl:value-of select="count(ports/port[state/@state='open' and @protocol='tcp'])" />
-                                            </td>
-                                            <td>
-                                                <xsl:value-of select="count(ports/port[state/@state='open' and @protocol='udp'])" />
-                                            </td>
-                                        </tr>
-                                    </xsl:for-each>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <!-- If there are more than 1024 offline hosts, mention that offlines are hidden. Seems arbitrary. See Comment #1-->
+                    <h2 id="scannedhosts" class="target">Scanned Hosts<xsl:if test="/nmaprun/runstats/hosts/@down > 1024"><small> (offline hosts are hidden)</small></xsl:if>
+                    </h2>
+                    <div class="table-responsive">
+                        <table id="table-overview" class="highlight dataTable">
+                            <thead>
+                                <tr>
+                                    <th>State</th>
+                                    <th>Address</th>
+                                    <th>Hostname</th>
+                                    <th>TCP (open)</th>
+                                    <th>UDP (open)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <xsl:choose>
+                                    <!-- Comment #1 -->
+                                    <xsl:when test="/nmaprun/runstats/hosts/@down > 1024">
+                                        <xsl:for-each select="/nmaprun/host[status/@state='up']">
+                                            <tr>
+                                                <td><span class="label label-danger">
+                                                        <xsl:if test="status/@state='up'">
+                                                            <xsl:attribute name="class">label label-success</xsl:attribute>
+                                                        </xsl:if>
+                                                        <xsl:value-of select="status/@state" />
+                                                    </span></td>
+                                                <td>
+                                                    <xsl:value-of select="address/@addr" />
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select="hostnames/hostname/@name" />
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select="count(ports/port[state/@state='open' and @protocol='tcp'])" />
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select="count(ports/port[state/@state='open' and @protocol='udp'])" />
+                                                </td>
+                                            </tr>
+                                        </xsl:for-each>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:for-each select="/nmaprun/host">
+                                            <tr>
+                                                <td><span class="label label-danger">
+                                                        <xsl:if test="status/@state='up'">
+                                                            <xsl:attribute name="class">label label-success</xsl:attribute>
+                                                        </xsl:if>
+                                                        <xsl:value-of select="status/@state" />
+                                                    </span></td>
+                                                <td>
+                                                    <xsl:value-of select="address/@addr" />
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select="hostnames/hostname/@name" />
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select="count(ports/port[state/@state='open' and @protocol='tcp'])" />
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select="count(ports/port[state/@state='open' and @protocol='udp'])" />
+                                                </td>
+                                            </tr>
+                                        </xsl:for-each>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </tbody>
+                        </table>
+                    </div>
+                    <script>
+                    $(document).ready(function() {
+                        $('#table-overview').DataTable();
+                    });
+                    </script>
                 </div>
-                <script>
-                $(document).ready(function() {
-                    $('#table-overview').DataTable();
-                });
-                </script>
                 <h2 id="onlinehosts" class="target">Online Hosts</h2>
                 <xsl:for-each select="/nmaprun/host[status/@state='up']">
                     <div class="panel panel-default">
