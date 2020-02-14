@@ -22,36 +22,43 @@ Modified for Materialize by Michael Ranaldo (@michaelranaldo)
             <script src="https://cdn.datatables.net/1.10.20/js/dataTables.min.js" integrity="sha384-7PXRkl4YJnEpP8uU4ev9652TTZSxrqC8uOpcV1ftVEC7LVyLZqqDUAaq+Y+lGgr9" crossorigin="anonymous"></script>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
             <style>
-                .target:before {
-            content: "";
-            display: block;
-            height: 50px;
-            margin: -20px 0 0;
-          }
-          @media only screen and (min-width:1900px) {
-            .container {
-              width: 1800px;
-              }
-          }
-          .footer {
-            margin-top:60px;
-            padding-top:60px;
-            width: 100%;
-            height: 180px;
-            background-color: #f5f5f5;
-          }
-          .clickable {
-            cursor: pointer;
-          }
-          .panel-heading > h3:before {
-            font-family: 'Glyphicons Halflings';
-            content: "\e114"; /* glyphicon-chevron-down */
-            padding-right: 1em;
-          }
-          .panel-heading.collapsed > h3:before {
-            content: "\e080"; /* glyphicon-chevron-right */
-          }
-        </style>
+            .target:before {
+                content: "";
+                display: block;
+                height: 50px;
+                margin: -20px 0 0;
+            }
+
+            @media only screen and (min-width:1900px) {
+                .container {
+                    width: 1800px;
+                }
+            }
+
+            .footer {
+                margin-top: 60px;
+                padding-top: 60px;
+                width: 100%;
+                height: 180px;
+                background-color: #f5f5f5;
+            }
+
+            .clickable {
+                cursor: pointer;
+            }
+
+            .panel-heading>h3:before {
+                font-family: 'Glyphicons Halflings';
+                content: "\e114";
+                /* glyphicon-chevron-down */
+                padding-right: 1em;
+            }
+
+            .panel-heading.collapsed>h3:before {
+                content: "\e080";
+                /* glyphicon-chevron-right */
+            }
+            </style>
             <title>Scan Report Nmap
                 <xsl:value-of select="/nmaprun/@version" />
             </title>
@@ -78,37 +85,46 @@ Modified for Materialize by Michael Ranaldo (@michaelranaldo)
             </nav>
             <!-- Main Content -->
             <div class="container">
-                <div class="card">
-                    <div class="card-content">
-                        <h1>Scan Report<br /><small>Nmap
-                                <xsl:value-of select="/nmaprun/@version" /></small></h1>
-                        <pre style="white-space:pre-wrap; word-wrap:break-word;"><xsl:value-of select="/nmaprun/@args"/></pre>
-                        <p class="lead">
-                            <xsl:value-of select="/nmaprun/@startstr" /> –
-                            <xsl:value-of select="/nmaprun/runstats/finished/@timestr" /><br />
-                            <xsl:value-of select="/nmaprun/runstats/hosts/@total" /> hosts scanned.
-                            <xsl:value-of select="/nmaprun/runstats/hosts/@up" /> hosts up.
-                            <xsl:value-of select="/nmaprun/runstats/hosts/@down" /> hosts down.
-                        </p>
-                        <div class="card-panel">
-                            <div class="progress">
-                                <div class="determinate" style="width: 0%">
-                                    <!-- Set the width using the nmap output, overriding the default -->
-                                    <xsl:attribute name="style">width:
-                                        <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />%;</xsl:attribute>
-                                    <xsl:value-of select="/nmaprun/runstats/hosts/@up" />
-                                    <span class="sr-only"></span>
-                                </div>
-                                <div class="progress-bar progress-bar-danger" style="width: 0%">
-                                    <xsl:attribute name="style">width:
-                                        <xsl:value-of select="/nmaprun/runstats/hosts/@down div /nmaprun/runstats/hosts/@total * 100" />%;</xsl:attribute>
-                                    <xsl:value-of select="/nmaprun/runstats/hosts/@down" />
-                                    <span class="sr-only"></span>
+                <!-- Scan Report Details Box -->
+                <div class="row">
+                    <div class="card">
+                        <div class="card-content">
+                            <h1>Scan Report</h1>
+                            <h2>Nmap
+                                <xsl:value-of select="/nmaprun/@version" />
+                            </h2>
+                            <div class="card-panel grey">
+                                <pre style="white-space:pre-wrap; word-wrap:break-word;"><xsl:value-of select="/nmaprun/@args"/></pre>
+                            </div>
+                            <!-- The At-A-Glance Stats Bit -->
+                            <div class="collection">
+                                <a href="#!" class="collection-item"><span class="badge"><xsl:value-of select="/nmaprun/@startstr" /></span>Scan Started</a>
+                                <a href="#!" class="collection-item"><span class="badge"><xsl:value-of select="/nmaprun/runstats/finished/@timestr" /></span>Scan Completed</a>
+                                <a href="#!" class="collection-item"><span class="blue badge"><xsl:value-of select="/nmaprun/@startstr" /></span>Hosts Scanned</a>
+                                <a href="#!" class="collection-item"><span class="green badge"><xsl:value-of select="/nmaprun/@startstr" /></span>Hosts Up</a>
+                                <a href="#!" class="collection-item"><span class="red badge"><xsl:value-of select="/nmaprun/@startstr" /></span>Hosts Down</a>
+                            </div>
+                            <!-- The Progress Bar Bit -->
+                            <div class="card-panel">
+                              <h2>Host Status</h2>
+                                <div class="progress">
+                                    <div class="determinate green tooltipped" data-position="top" data-tooltip="Completed Hosts" style="width: 0%">
+                                        <!-- Set the width using the nmap output, overriding the default -->
+                                        <xsl:attribute name="style">width:
+                                            <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />%;</xsl:attribute>
+                                        <xsl:value-of select="/nmaprun/runstats/hosts/@up" />
+                                        <span class="sr-only"></span>
+                                        <!-- Set tool tip data -->
+                                        <xsl:attribute name="data-tooltip">
+                                          <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />% of scanned hosts are up</xsl:attribute>
+                                        </xsl:attribute>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- Scanned Hosts Table -->
                 <h2 id="scannedhosts" class="target">Scanned Hosts<xsl:if test="/nmaprun/runstats/hosts/@down > 1024"><small> (offline hosts are hidden)</small></xsl:if>
                 </h2>
                 <div class="table-responsive">
