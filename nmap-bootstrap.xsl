@@ -87,50 +87,45 @@ Modified for Materialize by Michael Ranaldo (@michaelranaldo)
             <div class="container">
                 <!-- Scan Report Details Box -->
                 <div class="row">
-                    <div class="card">
-                        <div class="card-content">
-                            <h1>Scan Report</h1>
-                            <h2>Nmap
-                                <xsl:value-of select="/nmaprun/@version" />
-                            </h2>
-                            <div class="card-panel grey">
-                                <pre style="white-space:pre-wrap; word-wrap:break-word;"><xsl:value-of select="/nmaprun/@args"/></pre>
-                            </div>
-                            <!-- The At-A-Glance Stats Bit -->
-                            <div class="collection">
-                                <a href="#!" class="collection-item"><span class="badge">
-                                        <xsl:value-of select="/nmaprun/@startstr" /></span>Scan Started
-                                </a>
-                                <a href="#!" class="collection-item"><span class="badge">
-                                        <xsl:value-of select="/nmaprun/runstats/finished/@timestr" /></span>Scan Completed
-                                </a>
-                                <a href="#!" class="collection-item"><span class="blue badge">
-                                        <xsl:value-of select="/nmaprun/@startstr" /></span>Hosts Scanned
-                                </a>
-                                <a href="#!" class="collection-item"><span class="green badge">
-                                        <xsl:value-of select="/nmaprun/@startstr" /></span>Hosts Up
-                                </a>
-                                <a href="#!" class="collection-item"><span class="red badge">
-                                        <xsl:value-of select="/nmaprun/@startstr" /></span>Hosts Down
-                                </a>
-                            </div>
-                            <!-- The Progress Bar Bit -->
-                            <div class="card-panel">
-                                <h2>Host Status</h2>
-                                <div class="progress">
-                                    <div class="determinate green tooltipped" data-position="top" data-tooltip="Completed Hosts" style="width: 0%">
-                                        <!-- Set the width using the nmap output, overriding the default -->
-                                     <!--   <xsl:attribute name="style">width:
-                                            <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />%;
-                                        </xsl:attribute>
-                                        <xsl:value-of select="/nmaprun/runstats/hosts/@up" />
-                                        <span class="sr-only"></span> -->
-                                        <!-- Set tool tip data -->
-                                   <!--     <xsl:attribute name="data-tooltip">
+                    <h1>Scan Report</h1>
+                    <h2>Nmap
+                        <xsl:value-of select="/nmaprun/@version" />
+                    </h2>
+                    <div class="card-panel grey">
+                        <pre style="white-space:pre-wrap; word-wrap:break-word;"><xsl:value-of select="/nmaprun/@args"/></pre>
+                    </div>
+                    <!-- The At-A-Glance Stats Bit -->
+                    <div class="collection">
+                        <a href="#!" class="collection-item"><span class="badge">
+                                <xsl:value-of select="/nmaprun/@startstr" /></span>Scan Started
+                        </a>
+                        <a href="#!" class="collection-item"><span class="badge">
+                                <xsl:value-of select="/nmaprun/runstats/finished/@timestr" /></span>Scan Completed
+                        </a>
+                        <a href="#!" class="collection-item"><span class="blue badge">
+                                <xsl:value-of select="/nmaprun/runstats/hosts/@total" /></span>Hosts Scanned
+                        </a>
+                        <a href="#!" class="collection-item"><span class="green badge">
+                                <xsl:value-of select="/nmaprun/runstats/hosts/@up" /></span>Hosts Up
+                        </a>
+                        <a href="#!" class="collection-item"><span class="red badge">
+                                <xsl:value-of select="/nmaprun/runstats/hosts/@down" /></span>Hosts Down
+                        </a>
+                    </div>
+                    <!-- The Progress Bar Bit -->
+                    <div class="card-panel">
+                        <h2>Host Status</h2>
+                        <div class="progress">
+                            <div class="determinate green tooltipped" data-position="top" data-tooltip="Completed Hosts" style="width: 0%">
+                                <!-- Set the width using the nmap output, overriding the default -->
+                                <xsl:attribute name="style">width:
+                                    <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />%;</xsl:attribute>
+                                <xsl:value-of select="/nmaprun/runstats/hosts/@up" />
+                                <span class="sr-only"></span>
+                                <!-- Set tool tip data -->
+                                <!--     <xsl:attribute name="data-tooltip">
                                             <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />% of scanned hosts are up.
                                         </xsl:attribute> -->
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
