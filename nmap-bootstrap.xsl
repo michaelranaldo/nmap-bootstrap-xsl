@@ -119,28 +119,6 @@ Modified for Materialize by Michael Ranaldo (@michaelranaldo)
                                 <xsl:value-of select="/nmaprun/runstats/hosts/@down" /></span>Hosts Down
                         </a>
                     </div>
-                    <!-- The Progress Bar Bit -->
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-title teal-text">
-                                Active Hosts
-                            </div>
-                            <div class="card-content">
-                                <div class="progress">
-                                    <div class="determinate green tooltipped" data-position="top" data-tooltip="Completed Hosts" style="width: 0%">
-                                        <!-- Set the width using the nmap output, overriding the default -->
-                                        <xsl:attribute name="style">width:
-                                            <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />%;</xsl:attribute>
-                                        <xsl:value-of select="/nmaprun/runstats/hosts/@up" />
-                                        <span class="sr-only"></span>
-                                        <!-- Set tool tip data -->
-                                        <xsl:attribute name="data-tooltip">width:
-                                            <xsl:value-of select="/nmaprun/runstats/hosts/@up div /nmaprun/runstats/hosts/@total * 100" />%;</xsl:attribute>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- Scanned Hosts Table -->
                 <div class="row">
